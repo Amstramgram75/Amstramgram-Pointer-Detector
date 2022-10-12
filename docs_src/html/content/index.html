@@ -1,0 +1,278 @@
+<h2 id="play">Let's play !!!</h2>
+<div class="demo">
+  <div class="game-container">
+    <div class="left"></div>
+    <div class="top"></div>
+    <div class="right"></div>
+    <div class="bottom"></div>
+    <canvas class="dot" width="480" height="320"></canvas>
+  </div>
+  <div class="controls-wrapper">
+    <div class="controls">
+      <img src="assets/img/Sun.png" width="80" height="80">
+      <div class="button remove"><span>Remove all<br>listeners</span></div>
+      <div class="button auto enabled"><span>AUTO</span></div>
+    </div>
+    <div class="listeners">
+      <span>Event listeners <span class="italic">(Crtl+Click on one toggles all)</span> :</span>
+      <div>
+        <h4>Playing&nbsp;:&nbsp;</h4>
+        <input type="radio" id="playing" name="playing" value="on">
+        <label for="playing" data-value="on">ON</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="playing-once" name="playing" value="once">
+        <label for="playing-once" data-value="once">ONCE</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="playing-off" name="playing" value="off" checked>
+        <label for="playing-off" data-value="off">OFF</label>
+      </div>
+      <div>
+        <h4>Left collision&nbsp;:&nbsp;</h4>
+        <input type="radio" id="hitleft" name="hitleft" value="on">
+        <label for="hitleft" data-value="on">ON</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hitleft-once" name="hitleft" value="once">
+        <label for="hitleft-once" data-value="once">ONCE</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hitleft-off" name="hitleft" value="off" checked>
+        <label for="hitleft-off" data-value="off">OFF</label>
+      </div>
+      <div>
+        <h4>Top collision&nbsp;:&nbsp;</h4>
+        <input type="radio" id="hittop" name="hittop" value="on">
+        <label for="hittop"data-value="on">ON</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hittop-once" name="hittop" value="once">
+        <label for="hittop-once" data-value="once">ONCE</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hittop-off" name="hittop" value="off" checked>
+        <label for="hittop-off" data-value="off">OFF</label>
+      </div>
+      <div>
+        <h4>Right collision&nbsp;:&nbsp;</h4>
+        <input type="radio" id="hitright" name="hitright" value="on">
+        <label for="hitright" data-value="on">ON</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hitright-once" name="hitright" value="once">
+        <label for="hitright-once" data-value="once">ONCE</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hitright-off" name="hitright" value="off" checked>
+        <label for="hitright-off" data-value="off">OFF</label>
+      </div>
+      <div>
+        <h4>Bottom collision&nbsp;:&nbsp;</h4>
+        <input type="radio" id="hitbottom" name="hitbottom" value="on">
+        <label for="hitbottom" data-value="on">ON</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hitbottom-once" name="hitbottom" value="once">
+        <label for="hitbottom-once" data-value="once">ONCE</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hitbottom-off" name="hitbottom" value="off" checked>
+        <label for="hitbottom-off" data-value="off">OFF</label>
+      </div>
+      <div>
+        <h4>Paddle collision&nbsp;:&nbsp;</h4>
+        <input type="radio" id="hitpaddle" name="hitpaddle" value="on">
+        <label for="hitpaddle" data-value="on">ON</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hitpaddle-once" name="hitpaddle" value="once">
+        <label for="hitpaddle-once" data-value="once">ONCE</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hitpaddle-off" name="hitpaddle" value="off" checked>
+        <label for="hitpaddle-off" data-value="off">OFF</label>
+      </div>
+      <div>
+        <h4>Brick collision&nbsp;:&nbsp;</h4>
+        <input type="radio" id="hitbrick" name="hitbrick" value="on">
+        <label for="hitbrick" data-value="on">ON</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hitbrick-once" name="hitbrick" value="once">
+        <label for="hitbrick-once" data-value="once">ONCE</label>&nbsp;&nbsp;|&nbsp;
+        <input type="radio" id="hitbrick-off" name="hitbrick" value="off" checked>
+        <label for="hitbrick-off" data-value="off">OFF</label>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="installation">Installation</h2>
+<h3>npm</h3>
+<div class="code copy">
+  <pre><code class="language-shellsession">npm i -D amstramgram-event-emitter</code></pre>
+</div>
+<p>
+  And then in your javascript :
+</p>
+<div class="code copy">
+  <pre><code class="language-javascript">import EventEmitter from 'Amstramgram-Event-Emitter'</code></pre>
+</div>
+<h3>Manually</h3>
+<p class="text">
+  Just <a href="https://downgit.github.io/#/home?url=https://github.com/Amstramgram75/Amstramgram-Event-Emitter/blob/master/src/amstramgramEventEmitter.js" target="_blank">download the source</a> and use it in your project.<br>
+</p>
+<div class="code">
+  <pre><code class="language-javascript">import EventEmitter from './src_folder/amstramgramEventEmitter'</code></pre>
+</div>
+<h2 id="usage">Usage</h2>
+<h3>Basic</h3> 
+<div class="code">
+  <pre><code class="language-javascript">//Basic demo
+//Instanciation with two empty strings so events 'eventadded' and 'eventremoved' are not dispatched
+const emitter = new EventEmitter('', '')
+  
+//Same sillyCallback for two events
+emitter.on('firstevent secondevent', sillyCallback)
+  
+//stupidCallback will be called once only
+emitter.once('thirdevent', stupidCallback)
+  
+function sillyCallback(e) {
+  console.log(e.text)
+  if (e.plus) console.log(e.plus)
+}
+  
+function stupidCallback(e1, e2) {
+  console.log(e1, e2)
+}
+
+emitter.emit('firstevent', { text: "Hello, I'm the FirstEvent!!!" })
+emitter.emit('secondevent', { text: "Hello, I'm the SecondEvent!!!", plus: "Have a nice day !" })
+emitter.emit('thirdevent', "Hello, I'm the ThirdEvent!!!", "You'll never see me again !!!")
+emitter.emit('thirdevent', "You'll never see me !!!")
+</code></pre>
+</div>
+<p>
+    Open your console to see the result...
+</p>
+<h3>Normal</h3> 
+<p class="text">
+    However, if you really need a event emitter, it is probably for use its features in your own class&nbsp;:
+</p>
+<div class="code">
+  <pre><code class="language-javascript">import EventEmitter from 'Amstramgram-Event-Emitter'
+
+class MyFabulousClass extends EventEmitter {
+  ...
+  constructor() {
+    super()
+    ...
+    setTimeout(() => {
+      this.emit('initialization-end')
+    }, 1)
+  }
+  ...
+}
+...
+const myFabulousClass = new MyFabulousClass()
+myFabulousClass.once('initialization-end', _ => console.log("I'm ready !"))
+</code></pre>
+</div>
+<h2 id="api">API</h2>
+<h3>constructor</h3>
+<div class="code">
+  <pre><code class="language-javascript">/**
+ * @param {String} [eventAdded = "eventadded"] name of the event emitted when a new event/callback is added.
+ * If it's an empty string or not a string, no event will be dispatched when a event/callback is registered.
+ * @param {String} [eventRemoved = "eventremoved"] name of the event emitted when a new event/callback is removed.
+ * If it's an empty string or not a string, no event will be dispatched when a event/callback is unregistered
+**/
+constructor(eventAdded = 'eventadded', eventRemoved = 'eventremoved') 
+
+//If you don't need eventadded and eventremoved events :
+const emitter = new EventEmitter('', '')
+</code></pre>
+</div>
+<h3>on</h3>
+<div class="code">
+  <pre><code class="language-javascript">/**
+ * @description : register a callback for a list of events
+ * @param {string} eventsNames : list of event names separated by a space
+ * @param {function} callback : function called each time one event of eventsNames is emitted.
+ * @returns this so methods can be chained.
+**/
+emitter.on(eventsNames, callback)
+</code></pre>
+</div>
+<h3>once</h3>
+<div class="code">
+  <pre><code class="language-javascript">/**
+ * @description : register a callback for a list of events.
+ *                This callback will be called only once for each registered event.
+ * @param {string} eventsNames : list of event names separated by a space.
+ * @param {function} callback : function called only once for each emitted event of eventsNames.
+ * @returns this so methods can be chained.
+**/
+emitter.once(eventsNames, callback)
+</code></pre>
+</div>
+<h3>off</h3>
+<div class="code">
+  <pre><code class="language-javascript">/**
+ * @description : remove a callback for a list of events.
+ * @param {string} eventsNames : list of event names separated by a space.
+ * @param {function} callback : callback to removed.
+ * @returns this so methods can be chained.
+**/
+emitter.off(eventsNames, callback)
+</code></pre>
+</div>
+<div class="code">
+  <pre><code class="language-javascript">/**
+ * @description : remove all the registered callbacks for a list of events.
+ * @param {string} eventsNames : list of event names separated by a space.
+ * @returns this so methods can be chained.
+**/
+emitter.off(eventsNames)
+</code></pre>
+</div>
+<div class="code">
+  <pre><code class="language-javascript">/**
+ * @description : remove the callback for all registered events.
+ * @param {function} callback : callback to removed.
+ * @returns this so methods can be chained.
+**/
+emitter.off(callback)
+</code></pre>
+</div>
+<div class="code">
+  <pre><code class="language-javascript">/**
+ * @description : remove all registered events and callbacks.
+ * @returns this so methods can be chained.
+**/
+emitter.off()
+</code></pre>
+</div>
+<h3>emit</h3>
+<div class="code">
+  <pre><code class="language-javascript">/**
+ * @description : emit a given event.
+ * @param {String} eventName : event to emit.
+ * @param  {...any} args parameters passed to the callbacks.
+ * @returns this so methods can be chained.
+**/
+emit(eventName, args)
+</code></pre>
+</div>
+<h3>events</h3>
+<div class="code">
+  <pre><code class="language-javascript">/**
+ * @getter {Set} a Set of all registered events.
+**/
+console.log(emitter.events)
+
+//Output true if 'myevent' is a registered event, false otherwise
+console.log(emitter.events.has('myevent'))
+</code></pre>
+</div>
+<h3>eventsAndCallbacks</h3>
+<div class="code">
+  <pre><code class="language-javascript">/**
+ * @getter {Object}
+ * Returns an object which contains all the registered events and their callbacks
+ * {
+ *  eventName01 : {
+ *    callbacks : set listing the registered callbacks
+ *    callbacksOnce : set listing the registered callbacks once
+ *  },
+ *  ......
+ *  eventName0n : {
+ *    callbacks : set listing the registered callbacks
+ *    callbacksOnce : set listing the registered callbacks once
+ *  }
+ * }
+**/
+console.log(emitter.eventsAndCallbacks)
+
+//Output true if myCallback will be called by 'myevent', false otherwise
+console.log(emitter.events.has('myevent') && emitter.eventsAndCallbacks['myevent'].callbacks.has(myCallback))
+
+</code></pre>
+</div>
+
+<div></div>
