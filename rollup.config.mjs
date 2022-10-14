@@ -6,7 +6,7 @@ import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
 //JS
 import babel from '@rollup/plugin-babel'
-import { terser } from 'rollup-plugin-terser'
+import terser from 'rollup-plugin-terser-amstramgram'
 //CSS
 import cssPlugin from 'rollup-plugin-postcss-amstramgram'
 import postcssImport from 'postcss-import'
