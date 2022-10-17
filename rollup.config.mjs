@@ -21,41 +21,61 @@ import htmlnano from 'htmlnano'
 import watcher from 'rollup-plugin-watcher-amstramgram'
 import fsExtra from 'fs-extra'//To empty prod folder when building for production
 import copy from 'rollup-plugin-copy'//Copy assets folder from dev to prod folder
+//To update app package.json version to that defined in the main package.json
+import editJSON from "edit-json-file"
 
 
 const
   src = 'docs_src/',
   dev = 'docs_dev/',
   prod = 'docs/',
+  app = 'src/',
   dest = process.env.BUILD === 'development' ? dev : prod,
   theExports = [],
   //Babel basic configuration
   babelModule = {
     babelHelpers: 'bundled',
-    plugins: [
-      // '@babel/plugin-proposal-class-properties',
-      // '@babel/plugin-proposal-private-methods',
-      ['prismjs', {
-        'languages': ['javascript', 'js-extras', 'jsdoc'],
-      }]
-    ]
-  },
-  //Babel configuration to support old browsers
-  babelNoModule = Object.assign({
     exclude: [/\/core-js\//],
     presets: [
       [
         '@babel/preset-env',
         {
           'useBuiltIns': 'usage',
-          'corejs': '3.8'
+          'corejs': '3.8',
+          "targets": { "browsers": ">1%" }
         }
       ]
     ],
-  }, babelModule)
+    plugins: [
+      ['prismjs', {
+        'languages': ['javascript', 'js-extras', 'jsdoc'],
+      }]
+    ]
+  },
+  //Babel configuration to support old browsers
+  babelNoModule = Object.assign({}, babelModule)
 
-//Clean production directory before production build
-if (process.env.BUILD === 'production') fsExtra.emptyDirSync(prod)
+babelNoModule.presets = [
+  [
+    '@babel/preset-env',
+    {
+      'useBuiltIns': 'usage',
+      'corejs': '3.8',
+    }
+  ]
+]
+
+
+if (process.env.BUILD === 'production') {
+  //Set plugins version equals to that defined in main package.json
+  const
+    version = process.env.npm_package_version,
+    file = editJSON(`${app}/package.json`)
+  file.set("version", version)
+  file.save()
+  //Clean production directory before production build
+  fsExtra.emptyDirSync(prod)
+}
 
 //FIRST ROLLUP TASK :
 //- bundle index.js in a module
@@ -119,7 +139,8 @@ theExports.push(
         [//Copy assets folder
           copy({
             targets: [
-              { src: `${dev}assets`, dest: prod }
+              { src: `${dev}assets`, dest: prod },
+              { src: `readme.md`, dest: app }
             ]
           }),
           //and minify
@@ -161,7 +182,7 @@ theExports.push(
       format: 'iife'
     },
     plugins: [
-      ...(process.env.BUILD === 'production' ? [terser()] : [])
+      terser()
     ]
   }
 )

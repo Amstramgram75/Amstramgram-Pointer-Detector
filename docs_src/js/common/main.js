@@ -7,14 +7,6 @@ export default function main() {
     html = d.querySelector('html')
 
 
-
-  /**
-   * Add the class selected to the menu item according to the loaded page
-   */
-  try {
-    Array.from(d.querySelectorAll('aside ul.menu a')).filter(a => w.location.toString().indexOf(a.href) != -1)[0].classList.add('selected')
-  } catch (e) { d.querySelector('aside ul.menu a').classList.add('selected')}
-
   /*
     .loaded class is added to html.
     It hides the loader, 

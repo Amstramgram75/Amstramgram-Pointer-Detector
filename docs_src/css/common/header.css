@@ -38,25 +38,25 @@ header {
   }
 
   & a:before,
-  & .event:before,
-  & .emitter:before {
+  & .pointer:before,
+  & .detector:before {
     content: "A";
     display: inline-block;
     transition: transform 0.8s;
     will-change: transform;
   }
 
-  & .event:before {
-    content: "E";
+  & .pointer:before {
+    content: "P";
   }
 
-  & .emitter:before {
-    content: "E";
+  & .detector:before {
+    content: "D";
   }
 
   & a:hover:before,
-  & a:hover .event:before,
-  & a:hover .emitter:before,
+  & a:hover .pointer:before,
+  & a:hover .detector:before,
   & a:hover .github:before {
     transform: rotate3d(0, 1, 0, 360deg);/*Without effect on IE11 cause it thinks that 360deg = 0deg*/
   }
@@ -76,8 +76,8 @@ header {
       margin-left: 10px;
     }
 
-    & .event,
-    & .emitter {
+    & .pointer,
+    & .detector {
       display: inline;
     }
   }
