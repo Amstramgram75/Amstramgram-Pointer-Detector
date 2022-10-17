@@ -1,5 +1,3 @@
-//cSpell:words amstramgram amst
-
 /**
  * @class APD
  * @description Singleton in charge of pointer events names standardization
